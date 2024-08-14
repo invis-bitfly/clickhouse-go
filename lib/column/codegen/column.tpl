@@ -266,9 +266,12 @@ func (col *{{ .ChType }}) Append(v any) (nulls []uint8,err error) {
 	switch v := v.(type) {
 	case []{{ .GoType }}:
 		nulls =  make([]uint8, len(v))
+		/*
 		for i := range v {
 			col.col.Append(v[i])
 		}
+		*/
+		col.col.AppendArr(v)
 	case []*{{ .GoType }}:
 		nulls = make([]uint8, len(v))
 		for i := range v {
